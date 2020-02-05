@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/josephlbaker/mission_ceramics_BE#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "square-connect": "^2.20200122.0"
   }
 }
