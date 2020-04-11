@@ -40,7 +40,9 @@ app.get("/customers", (req, res) => {
 app.post("/create-customer", (req, res) => {
   const body = req.body;
   customers_api.createCustomer(body).then(function (data) {
-    console.log('API called successfully. Returned data: ' + data);
+    console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+    // return (JSON.stringify(data));
+    res.send(data);
   }, function (error) {
     console.error(error);
   });
