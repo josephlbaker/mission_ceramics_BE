@@ -55,7 +55,8 @@ app.post("/orders", (req, res) => {
   // var body = new SquareConnect.CreateOrderRequest(); // CreateOrderRequest | An object containing the fields to POST for the request.  See the corresponding object definition for field details.
   const body = req.body;
   orders_api.createOrder(locationId, body).then(function (data) {
-    console.log('API called successfully. Returned data: ' + data);
+    console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+    res.send(data);
   }, function (error) {
     console.error(error);
   });
