@@ -25,7 +25,22 @@ const payments_api = new SquareConnect.PaymentsApi();
 const locations_api = new SquareConnect.LocationsApi();
 const catalog_api = new SquareConnect.CatalogApi();
 const customers_api = new SquareConnect.CustomersApi();
+const checkout_api = new SquareConnect.CheckoutApi();
 
+const locationId = process.env.LOCATION_ID; // String | The ID of the business location to associate the order with.
+
+// CHECKOUT
+
+app.post("/checkout", (req, res) => {
+  const body = req.body; // CreateCheckoutRequest | An object containing the fields to POST for the request.  See the corresponding object definition for field details.
+
+  checkout_api.createCheckout(locationId, body).then(function (data) {
+    console.log('CHECKOUT API called successfully. Returned data: ' + JSON.stringify(data));
+    res.send(data);
+  }, function (error) {
+    console.error(error);
+  });
+})
 
 // CUSTOMERS
 
@@ -51,7 +66,6 @@ app.post("/create-customer", (req, res) => {
 // ORDERS
 
 app.post("/orders", (req, res) => {
-  const locationId = process.env.LOCATION_ID; // String | The ID of the business location to associate the order with.
   // var body = new SquareConnect.CreateOrderRequest(); // CreateOrderRequest | An object containing the fields to POST for the request.  See the corresponding object definition for field details.
   const body = req.body;
   orders_api.createOrder(locationId, body).then(function (data) {
