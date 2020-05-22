@@ -158,6 +158,11 @@ app.post('/payments', async (req, res) => {
   }
 });
 
-app.listen(8000, () => {
-  console.log('Example app listening on port 8000!');
+// app.listen(8000, () => {
+//   console.log('Example app listening on port 8000!');
+// });
+
+var port = normalizePort(process.env.PORT || '8000');
+app.listen(port, function () {
+  console.log(`App running on port ${port}`);
 });
