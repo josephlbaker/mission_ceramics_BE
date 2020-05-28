@@ -109,7 +109,7 @@ app.post("/search-orders", (req, res) => {
 //   }
 // });
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
   const catalog = new SquareConnect.CatalogApi();
 
   const opts = {
