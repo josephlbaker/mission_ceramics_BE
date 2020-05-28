@@ -8,25 +8,11 @@ const app = express();
 const SquareConnect = require('square-connect');
 const defaultClient = SquareConnect.ApiClient.instance;
 
-const port = (process.env.PORT || process.env.VCAP_APP_PORT || 8000);
-app.enable('trust proxy');
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname));
 app.use(cors());
 app.options('*', cors());
-
-app.use(function (req, res, next) {
-  if (req.secure) {
-    // request was via https, so do no special handling
-    next();
-  } else {
-    // request was via http, so redirect to https
-    res.redirect('https://' + req.headers.host + req.url);
-  }
-});
-app.use(express.static(__dirname + '/public'));
 
 // SANDBOX URL! DELETE FOR PRODUCTION!
 defaultClient.basePath = 'https://connect.squareupsandbox.com';
@@ -123,7 +109,7 @@ app.post("/search-orders", (req, res) => {
 //   }
 // });
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   const catalog = new SquareConnect.CatalogApi();
 
   const opts = {
@@ -172,6 +158,6 @@ app.post('/payments', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
+app.listen(8000, () => {
   console.log('Example app listening on port 8000!');
 });

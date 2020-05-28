@@ -26,6 +26,7 @@
     "https": "^1.0.0",
     "node": "^14.2.0",
     "nodemon": "^2.0.2",
-    "square-connect": "^2.20200122.0"
+    "square-connect": "^2.20200122.0",
+    "wget": "^0.0.1"
   }
 }
