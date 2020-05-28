@@ -31,7 +31,7 @@ const locationId = process.env.LOCATION_ID; // String | The ID of the business l
 
 // CHECKOUT
 
-app.post("/checkout", (req, res) => {
+app.post("/api/checkout", (req, res) => {
   const body = req.body; // CreateCheckoutRequest | An object containing the fields to POST for the request.  See the corresponding object definition for field details.
 
   checkout_api.createCheckout(locationId, body).then(function (data) {
@@ -44,7 +44,7 @@ app.post("/checkout", (req, res) => {
 
 // CUSTOMERS
 
-app.get("/customers", (req, res) => {
+app.get("/api/customers", (req, res) => {
   customers_api.listCustomers().then(function (data) {
     console.log('API called successfully. Returned data: ' + JSON.stringify(data));
   }, function (error) {
@@ -52,7 +52,7 @@ app.get("/customers", (req, res) => {
   });
 })
 
-app.post("/create-customer", (req, res) => {
+app.post("/api/create-customer", (req, res) => {
   const body = req.body;
   customers_api.createCustomer(body).then(function (data) {
     console.log('API called successfully. Returned data: ' + JSON.stringify(data));
@@ -65,7 +65,7 @@ app.post("/create-customer", (req, res) => {
 
 // ORDERS
 
-app.post("/orders", (req, res) => {
+app.post("/api/orders", (req, res) => {
   // var body = new SquareConnect.CreateOrderRequest(); // CreateOrderRequest | An object containing the fields to POST for the request.  See the corresponding object definition for field details.
   const body = req.body;
   orders_api.createOrder(locationId, body).then(function (data) {
@@ -76,7 +76,7 @@ app.post("/orders", (req, res) => {
   });
 })
 
-app.post("/search-orders", (req, res) => {
+app.post("/api/search-orders", (req, res) => {
   // var body = new SquareConnect.SearchOrdersRequest(); // SearchOrdersRequest | An object containing the fields to POST for the request.  See the corresponding object definition for field details.
   const body = req.body;
   orders_api.searchOrders(body).then(function (data) {
@@ -124,7 +124,7 @@ app.get('/', (req, res) => {
   });
 });
 
-app.post('/payments', async (req, res) => {
+app.post('/api/payments', async (req, res) => {
   const request_params = req.body;
 
   // length of idempotency_key should be less than 45
