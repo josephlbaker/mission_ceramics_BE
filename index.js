@@ -15,7 +15,7 @@ app.use(cors());
 app.options('*', cors());
 
 // SANDBOX URL! DELETE FOR PRODUCTION!
-defaultClient.basePath = 'https://connect.squareupsandbox.com';
+// defaultClient.basePath = 'https://connect.squareupsandbox.com';
 
 const oauth2 = defaultClient.authentications['oauth2'];
 oauth2.accessToken = process.env.ACCESS_TOKEN;
